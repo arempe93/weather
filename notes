@@ -1,0 +1,83 @@
+http://snowfence.umn.edu/Components/winddirectionanddegrees.htm
+https://openweathermap.org/weather-conditions
+
+export type CurrentWeatherResult = {
+  /** Location data */
+  coords: {
+    /** City latitude in deg */
+    lat: number
+    /** City longitude in deg */
+    lon: number
+  }
+  /** Weather conditions data */
+  weather: {
+    /** Weather condition ID */
+    id: number
+    /** Group of weather parameters (Rain, Snow, Extreme etc.) */
+    main: string
+    /** Weather condition within the group */
+    description: string
+    /** Weather icon ID */
+    icon: string
+  }
+  /** Main weather readings data */
+  main: {
+    /** Temperature in K */
+    temp: number
+    /** Feels like temperature in K */
+    feels_like: number
+    /** Maximum temperature in K */
+    temp_min: number
+    /** Minimum temperature in K */
+    temp_max: number
+    /** Humidity % (0-1) */
+    humidity: number
+    /** Atmospheric pressure in hPa (on the sea level, if there is no sea_level or grnd_level data) */
+    pressure: number
+  }
+  /** Wind data */
+  wind: {
+    /** Wind speed in m/s */
+    speed: number
+    /** Wind direction in degrees (meteorological) */
+    deg: number
+    /** Wind gust speed in m/s */
+    gust?: number
+  }
+  /** Clouds data */
+  clouds: {
+    /** Cloud coverage % (0-1) */
+    all: number
+  }
+  /** Rain data */
+  rain: {
+    /** Rain volume in the past hour in mm */
+    '1h': number
+    /** Rain volume in the past 3 hours in mm */
+    '3h': number
+  }
+  /** Snow data */
+  snow: {
+    /** Snow volume in the past hour in mm */
+    '1h': number
+    /** Snow volume in the past 3 hours in mm */
+    '3h': number
+  }
+  /** Time of calculation (Unix, UTC) */
+  dt: number
+  /** System data */
+  sys: {
+    /** Country code */
+    country: string
+    /** Time of sunrise (Unix, UTC) */
+    sunrise: number
+    /** Time of sunset (Unix, UTC) */
+    sunset: number
+  }
+  /** Shift from UTC in seconds */
+  timezone: number
+  /** City ID */
+  id: number
+  /** City name */
+  name: string
+}
