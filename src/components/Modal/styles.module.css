@@ -1,0 +1,56 @@
+@keyframes overlayShow {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
+}
+
+@keyframes contentShow {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 2%) scale(.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+.overlay {
+  inset: 0;
+  position: fixed;
+
+  background-color: theme('colors.neutral.alpha.16');
+
+  @screen allowsMotion {
+    animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+.content {
+  width: calc(100vw - 32px);
+
+  left: 50%;
+  position: fixed;
+  top: 16px;
+
+  border-radius: theme('borderRadius.DEFAULT');
+  box-shadow: theme('boxShadow.lg');
+
+  transform: translate(-50%, 0);
+
+  &:focus {
+    outline: none;
+  }
+
+  & > * {
+    box-shadow: none;
+  }
+
+  @screen laptop {
+    top: 64px;
+  }
+
+  @screen allowsMotion {
+    animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+}

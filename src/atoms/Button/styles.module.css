@@ -1,0 +1,339 @@
+.button {
+  --bg-color: theme('colors.theme.DEFAULT');
+  --border-color: theme('colors.theme.DEFAULT');
+  --text-color: white;
+
+  --hover-bg-color: theme('colors.theme.dark');
+  --hover-border-color: theme('colors.theme.dark');
+
+  --active-bg-color: theme('colors.theme.darker');
+  --active-border-color: theme('colors.theme.darker');
+
+  --disabled-bg-color: theme('colors.neutral.lightest');
+  --disabled-border-color: theme('colors.neutral.lightest');
+  --disabled-text-color: theme('textColor.lightest');
+
+  --height: 35px;
+  --font-size: 14px;
+  --line-height: 28px;
+  --padding: 0 18px;
+
+  --focus-ring-color: theme('colors.theme.light');
+  --focus-ring-offset: 1px;
+
+  align-items: center;
+  display: inline-flex;
+  gap: 8px;
+  height: var(--height);
+  justify-content: center;
+  padding: var(--padding);
+
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: theme('borderRadius.DEFAULT');
+  color: var(--text-color);
+  cursor: pointer;
+  outline: none;
+
+  font-family: theme('fontFamily.sans');
+  font-weight: theme('fontWeight.medium');
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition: background-color 100ms ease-out 0s, box-shadow 300ms ease;
+
+  @apply focus-ring-base;
+
+  &:focus-visible {
+    @apply focus-ring-active;
+  }
+
+  &:hover {
+    background-color: var(--hover-bg-color);
+    border-color: var(--hover-border-color);
+
+    text-decoration: none;
+  }
+
+  &:active {
+    background-color: var(--active-bg-color);
+    border-color: var(--active-border-color);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &[disabled] {
+    background-color: var(--disabled-bg-color);
+    border-color: var(--disabled-border-color);
+    color: var(--disabled-text-color);
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: var(--disabled-bg-color);
+      border-color: var(--disabled-border-color);
+    }
+  }
+
+  &.hasPopup {
+    padding-right: 12px;
+  }
+
+  &.status-success {
+    --focus-ring-color: theme('colors.success.light');
+  }
+
+  &.status-danger {
+    --focus-ring-color: theme('colors.danger.light');
+  }
+
+  &.status-hi-contrast {
+    --focus-ring-color: white;
+  }
+
+  /** == APPEARANCE: PRIMARY == */
+
+  &.appearance-primary.status-theme {
+    --bg-color: theme('colors.theme.DEFAULT');
+    --border-color: theme('colors.theme.DEFAULT');
+    --text-color: white;
+
+    --hover-bg-color: theme('colors.theme.dark');
+    --hover-border-color: theme('colors.theme.dark');
+
+    --active-bg-color: theme('colors.theme.darker');
+    --active-border-color: theme('colors.theme.darker');
+  }
+
+  &.appearance-primary.status-success {
+    --bg-color: theme('colors.success.DEFAULT');
+    --border-color: theme('colors.success.DEFAULT');
+    --text-color: white;
+
+    --hover-bg-color: theme('colors.success.dark');
+    --hover-border-color: theme('colors.success.dark');
+
+    --active-bg-color: theme('colors.success.darker');
+    --active-border-color: theme('colors.success.darker');
+  }
+
+  &.appearance-primary.status-danger {
+    --bg-color: theme('colors.danger.DEFAULT');
+    --border-color: theme('colors.danger.DEFAULT');
+    --text-color: white;
+
+    --hover-bg-color: theme('colors.danger.dark');
+    --hover-border-color: theme('colors.danger.dark');
+
+    --active-bg-color: theme('colors.danger.darker');
+    --active-border-color: theme('colors.danger.darker');
+  }
+
+  &.appearance-primary.status-hi-contrast {
+    --bg-color: white;
+    --border-color: transparent;
+    --text-color: theme('textColor.default');
+
+    --hover-bg-color: theme('colors.white.alpha.92');
+    --hover-border-color: transparent;
+
+    --active-bg-color: theme('colors.white.alpha.84');
+    --active-border-color: transparent;
+  }
+
+  /** == APPEARANCE: OUTLINE == */
+
+  &.appearance-outline.status-theme {
+    --bg-color: white;
+    --border-color: theme('colors.neutral.light');
+    --text-color: theme('textColor.default');
+
+    --hover-bg-color: theme('colors.neutral.alpha.4');
+    --hover-border-color: theme('colors.neutral.light');
+
+    --active-bg-color: theme('colors.neutral.alpha.8');
+    --active-border-color: theme('colors.neutral.light');
+  }
+
+  &.appearance-outline.status-success {
+    --bg-color: white;
+    --border-color: theme('colors.success.light');
+    --text-color: theme('colors.success.darkest');
+
+    --hover-bg-color: theme('colors.success.alpha.8');
+    --hover-border-color: theme('colors.success.light');
+
+    --active-bg-color: theme('colors.success.alpha.12');
+    --active-border-color: theme('colors.success.light');
+  }
+
+  &.appearance-outline.status-danger {
+    --bg-color: white;
+    --border-color: theme('colors.danger.light');
+    --text-color: theme('colors.danger.darker');
+
+    --hover-bg-color: theme('colors.danger.alpha.4');
+    --hover-border-color: theme('colors.danger.light');
+
+    --active-bg-color: theme('colors.danger.alpha.8');
+    --active-border-color: theme('colors.danger.light');
+  }
+
+  &.appearance-outline.status-hi-contrast {
+    --bg-color: transparent;
+    --border-color: theme('colors.white.alpha.24');
+    --text-color: white;
+
+    --hover-bg-color: theme('colors.danger.alpha.4');
+    --hover-border-color: theme('colors.white.alpha.48');
+
+    --active-bg-color: theme('colors.white.alpha.16');
+    --active-border-color: theme('colors.white.alpha.48');
+  }
+
+  /** == APPEARANCE: PLAIN == */
+
+  &.appearance-plain {
+    --bg-color: transparent;
+    --border-color: transparent;
+
+    --hover-bg-color: transparent;
+    --hover-border-color: transparent;
+
+    --active-border-color: transparent;
+
+    --disabled-bg-color: transparent;
+    --disabled-border-color: transparent;
+
+    gap: 4px;
+    height: 21px;
+    padding: 0 4px;
+
+    border: none;
+
+    font-weight: theme('fontWeight.normal');
+    line-height: 1.5;
+
+    &:hover, &:focus-visible, &:active {
+      text-decoration: underline;
+
+      &[disabled] {
+        text-decoration: none;
+      }
+    }
+
+    &.hasPopup {
+      padding-right: 2px;
+    }
+  }
+
+  &.appearance-plain.status-theme {
+    --text-color: theme('colors.theme.DEFAULT');
+
+    --active-bg-color: theme('colors.theme.alpha.8');
+  }
+
+  &.appearance-plain.status-success {
+    --text-color: theme('colors.success.darker');
+
+    --active-bg-color: theme('colors.success.alpha.4');
+  }
+
+  &.appearance-plain.status-danger {
+    --text-color: theme('colors.danger.DEFAULT');
+
+    --active-bg-color: theme('colors.danger.alpha.4');
+  }
+
+  &.appearance-plain.status-hi-contrast {
+    --text-color: white;
+
+    --active-bg-color: theme('colors.white.alpha.12');
+  }
+
+  /** == APPEARANCE: CLEAR == */
+
+  &.appearance-clear {
+    --bg-color: transparent;
+    --border-color: transparent;
+
+    --hover-border-color: transparent;
+
+    --active-border-color: transparent;
+  }
+
+  &.appearance-clear.status-theme {
+    --text-color: theme('textColor.light');
+
+    --hover-bg-color: theme('colors.neutral.alpha.12');
+
+    --active-bg-color: theme('colors.neutral.alpha.16');
+  }
+
+  &.appearance-clear.status-success {
+    --text-color: theme('colors.success.darker');
+
+    --hover-bg-color: theme('colors.success.alpha.8');
+
+    --active-bg-color: theme('colors.success.alpha.12');
+  }
+
+  &.appearance-clear.status-danger {
+    --text-color: theme('colors.danger.DEFAULT');
+
+    --hover-bg-color: theme('colors.danger.alpha.4');
+
+    --active-bg-color: theme('colors.danger.alpha.8');
+  }
+
+  &.appearance-clear.status-hi-contrast {
+    --text-color: white;
+
+    --hover-bg-color: theme('colors.white.alpha.8');
+
+    --active-bg-color: theme('colors.white.alpha.16');
+  }
+
+  /** == SIZES ==*/
+
+  &.size-sm {
+    --height: 21px;
+    --font-size: 12px;
+    --line-height: 21px;
+    --padding: 0 8px;
+  }
+
+  &.size-md { }
+
+  &.size-lg {
+    --height: 42px;
+    --font-size: 16px;
+    --line-height: 36px;
+    --padding: 0 21px;
+  }
+
+  /** == ICONIC == */
+
+  &.iconic {
+    --iconic-size: 35px;
+    --font-size: 16px;
+    --line-height: var(--iconic-size);
+    --padding: 0px;
+
+    height: var(--iconic-size);
+    width: var(--iconic-size);
+  }
+
+  &.iconic.size-sm {
+    --iconic-size: 21px;
+    --font-size: 14px;
+  }
+
+  &.iconic.size-lg {
+    --iconic-size: 42px;
+    --font-size: 18px;
+  }
+}

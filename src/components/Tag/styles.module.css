@@ -1,0 +1,57 @@
+.main {
+  align-items: center;
+  display: inline-flex;
+  min-height: 1.75rem;
+  max-width: 100%;
+
+  background-color: theme('colors.neutral.alpha.12');
+  border-radius: theme('borderRadius.DEFAULT');
+  color: theme('textColor.default');
+}
+
+.text {
+  display: inline-block;
+  padding: 0 0.5rem;
+
+  overflow: hidden;
+
+  font-size: theme('fontSize.sm');
+  line-height: 22px;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.close {
+  --border-radius: 0 theme('borderRadius.DEFAULT') theme('borderRadius.DEFAULT') 0;
+  --focus-ring-border-radius: var(--border-radius);
+
+  align-items: center;
+  appearance: none;
+  display: inline-flex;
+  height: 1.75rem;
+  justify-content: center;
+  width: 1.75rem;
+
+  background-color: transparent;
+  border: none;
+  border-radius: var(--border-radius);
+  color: theme('textColor.light');
+  cursor: pointer;
+
+  fontSize: theme('fontSize.base');
+
+  @apply focus-ring-base;
+
+  &:focus-visible {
+    @apply focus-ring-active;
+  }
+
+  &:hover {
+    background-color: theme('colors.neutral.alpha.8');
+  }
+
+  &:focus, &:active {
+    outline: none;
+  }
+}

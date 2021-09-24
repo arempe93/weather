@@ -1,0 +1,39 @@
+.main {
+  display: flex;
+  flex-direction: column;
+
+  @screen laptop {
+    column-gap: 24px;
+    display: grid;
+  }
+
+  &.layout-single {
+    @screen laptop {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &.layout-double {
+    @screen laptop {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &.layout-double-left {
+    @screen laptop {
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+
+  &.layout-double-right {
+    @screen laptop {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
+
+  &.layout-triple {
+    @screen laptop {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}

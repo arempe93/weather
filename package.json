@@ -1,0 +1,62 @@
+{
+  "name": "nextjs-seed",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-regular-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "@radix-ui/react-aspect-ratio": "^0.0.15",
+    "@radix-ui/react-checkbox": "^0.0.16",
+    "@radix-ui/react-dialog": "^0.0.19",
+    "@radix-ui/react-dropdown-menu": "^0.0.23",
+    "@radix-ui/react-id": "^0.0.6",
+    "@radix-ui/react-polymorphic": "^0.0.12",
+    "@radix-ui/react-radio-group": "^0.0.18",
+    "@radix-ui/react-slot": "^0.0.12",
+    "@radix-ui/react-tabs": "^0.0.15",
+    "@radix-ui/react-tooltip": "^0.0.20",
+    "classnames": "^2.3.1",
+    "date-fns": "^2.23.0",
+    "js-cookie": "^3.0.0",
+    "next": "11.0.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.12.1",
+    "react-is": "^17.0.2",
+    "react-modal-hook": "^3.0.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^6.3.7",
+    "@storybook/addon-essentials": "^6.3.7",
+    "@storybook/addon-links": "^6.3.7",
+    "@storybook/builder-webpack5": "^6.3.7",
+    "@storybook/manager-webpack5": "^6.3.7",
+    "@storybook/react": "^6.3.7",
+    "@types/js-cookie": "^2.2.7",
+    "@types/node": "^15.12.4",
+    "@types/react": "17.0.11",
+    "autoprefixer": "^10.2.6",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "eslint": "7.29.0",
+    "eslint-config-next": "11.0.0",
+    "postcss": "^8.3.5",
+    "postcss-loader": "^6.1.0",
+    "tailwindcss": "^2.2.2",
+    "tsconfig-paths-webpack-plugin": "^3.5.1",
+    "typescript": "^4.4.1"
+  },
+  "resolutions": {
+    "@urql/exchange-auth@0.1.4": "patch:@urql/exchange-auth@npm:0.1.4#.yarn/patches/@urql-exchange-auth-npm-0.1.4-772b311842"
+  }
+}

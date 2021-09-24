@@ -1,0 +1,29 @@
+.main {
+  display: grid;
+  gap: 24px;
+  grid-template-areas: "primary" "secondary";
+  grid-template-rows: auto auto;
+
+  @screen laptop {
+    grid-template-areas: "primary secondary";
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 320px;
+  }
+
+  &.flipped {
+    grid-template-areas: "secondary" "primary";
+
+    @screen laptop {
+      grid-template-areas: "secondary primary";
+      grid-template-columns: 320px 1fr;
+    }
+  }
+}
+
+.primary {
+  grid-area: primary;
+}
+
+.secondary {
+  grid-area: secondary;
+}

@@ -1,0 +1,30 @@
+.main {
+  padding: 6px 12px;
+  width: 100%;
+
+  background-color: white;
+  border: 1px solid theme('colors.neutral.light');
+  border-radius: theme('borderRadius.DEFAULT');
+  box-shadow: 0 0 0 -2px white, 0 0 0 0 theme('colors.theme.light');
+
+  font-family: theme('fontFamily.sans');
+  font-size: theme('fontSize.sm');
+
+  transition: box-shadow 300ms ease;
+
+  &:focus {
+    outline: none;
+
+    @apply ring-2 ring-offset-1 ring-theme-light;
+  }
+
+  &[aria-invalid="true"] {
+    border-color: theme('colors.danger.DEFAULT');
+
+    @apply ring-danger-lighter;
+  }
+
+  &::placeholder {
+    color: theme('textColor.lightest');
+  }
+}

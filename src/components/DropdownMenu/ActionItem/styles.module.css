@@ -1,0 +1,51 @@
+.main {
+  align-items: center;
+  all: 'unset';
+  display: flex;
+  height: 28px;
+  padding: 0 8px 0 16px;
+  user-select: none;
+  width: 100%;
+
+  border-radius: theme('borderRadius.sm');
+  color: theme('textColor.default');
+  cursor: pointer;
+
+  font-size: theme('fontSize.sm');
+  line-height: 1;
+  text-decoration: none;
+
+  &:focus {
+    background-color: theme('colors.neutral.alpha.12');
+    outline: none;
+
+    text-decoration: none;
+  }
+
+  &.has-left-decorations {
+    padding-left: 32px;
+  }
+}
+
+.dangerous {
+  color: theme('textColor.danger.DEFAULT');
+}
+
+.right {
+  margin-left: auto;
+  padding-left: 16px;
+
+  color: theme('textColor.light');
+}
+
+.icon {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  width: 26px;
+
+  left: 0;
+  position: absolute;
+
+  font-size: 10px;
+}

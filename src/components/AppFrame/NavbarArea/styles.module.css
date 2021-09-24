@@ -1,0 +1,29 @@
+.main {
+  display: flex;
+  grid-area: navbar;
+
+  z-index: theme('zIndex.20');
+
+  & > * {
+    flex: 1;
+  }
+
+  @screen laptop {
+    height: var(--navbar-height);
+
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+  }
+}
+
+.scrolled {
+  box-shadow: theme('boxShadow.md');
+}
+
+.with-sidebar {
+  @screen laptop {
+    left: var(--sidebar-width);
+  }
+}

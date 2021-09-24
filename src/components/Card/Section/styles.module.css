@@ -1,0 +1,25 @@
+.main {
+  --border-radius: theme('borderRadius.DEFAULT');
+
+  padding: 20px;
+
+  & + & {
+    border-top: 1px solid theme('colors.neutral.lightest');
+  }
+
+  &:first-child {
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+  }
+
+  &:last-child {
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+  }
+
+  &.flush {
+    padding: 0;
+  }
+
+  &.subdued {
+    background-color: theme('colors.neutral.alpha.2');
+  }
+}

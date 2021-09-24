@@ -1,0 +1,37 @@
+.main {
+  --desktop-max-width: 48rem;
+
+  display: grid;
+  grid-template-areas: "lgutter content rgutter";
+  /** https://css-tricks.com/preventing-a-grid-blowout */
+  grid-template-columns: 16px minmax(0px, 1fr) 16px;
+  max-width: 100%;
+
+  @screen laptop {
+    grid-template-columns: 1fr minmax(auto, var(--desktop-max-width)) 1fr;
+  }
+
+  &.size-xs {
+    --desktop-max-width: 32rem;
+  }
+
+  &.size-sm {
+    --desktop-max-width: 40rem;
+  }
+
+  &.size-md {
+    --desktop-max-width: 48rem;
+  }
+
+  &.size-lg {
+    --desktop-max-width: 64rem;
+  }
+
+  &.size-xl {
+    --desktop-max-width: 72rem;
+  }
+
+  &.size-full {
+    grid-template-columns: 0px 1fr 0px;
+  }
+}

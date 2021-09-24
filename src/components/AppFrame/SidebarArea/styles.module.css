@@ -1,0 +1,23 @@
+.main {
+  display: none;
+  grid-area: sidebar;
+  width: var(--sidebar-width);
+
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  top: 0;
+
+  /* box-shadow: theme('boxShadow.lg'); */
+  overflow-y: auto;
+
+  z-index: theme('zIndex.20');
+
+  & > * {
+    flex: 1;
+  }
+
+  @screen laptop {
+    display: flex;
+  }
+}
