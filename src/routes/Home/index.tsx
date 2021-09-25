@@ -1,6 +1,5 @@
 import Head from 'next/head'
-import { useCallback } from 'react'
-import { getGeocode, getLatLng } from 'use-places-autocomplete'
+import { useCallback, useMemo, useState } from 'react'
 
 import useLocalStorage from '@/hooks/useLocalStorage'
 
@@ -9,19 +8,15 @@ import GooglePlacesAutocomplete, {
 } from '@/components/GooglePlacesAutocomplete'
 import SingleColumnLayout from '@/components/SingleColumnLayout'
 
+import Weather from './Weather'
+
 import { removeAtIndex } from '@/util/array'
 
-const PLACES_STORAGE_KEY = '$places'
-
-type Place = {
-  id: string
-  lat: number
-  lon: number
-  name: string
-}
+import { Place, suggestionToPlace, PLACES_STORAGE_KEY } from './util'
 
 const Home = () => {
-  const [places, setPlaces] = useLocalStorage<Place[]>(
+  const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null)
+  const [storedPlaces, setPlaces] = useLocalStorage<Place[]>(
     PLACES_STORAGE_KEY,
     (serialized) => {
       const parsed = JSON.parse(serialized)
@@ -33,9 +28,18 @@ const Home = () => {
     }
   )
 
+  const selectedPlace = useMemo(() => {
+    if (selectedPlaceId === null || storedPlaces === null) {
+      return null
+    }
+
+    return storedPlaces.find((place) => place.id === selectedPlaceId) ?? null
+  }, [selectedPlaceId, storedPlaces])
+
   const addPlace = useCallback(async (suggestion: Suggestion) => {
     const place = await suggestionToPlace(suggestion)
     setPlaces((places) => (places ? [...places, place] : [place]))
+    setSelectedPlaceId(place.id)
   }, [])
 
   const removePlace = useCallback(
@@ -43,6 +47,8 @@ const Home = () => {
       setPlaces((places) => (places ? removeAtIndex(places, index) : [])),
     []
   )
+
+  const places = storedPlaces ?? []
 
   return (
     <>
@@ -59,38 +65,29 @@ const Home = () => {
             onSelect={(suggestion) => suggestion && addPlace(suggestion)}
           />
           <div>
-            {places &&
-              places.map((place, index) => (
-                <div key={place.id}>
+            <div>
+              <span>My location</span>
+              <button onClick={() => setSelectedPlaceId(null)}>Select</button>
+            </div>
+            {places.map((place, index) => (
+              <div key={place.id}>
+                <span>
                   {place.name} ({place.lat}, {place.lon})
-                  <button onClick={() => removePlace(index)}>Remove</button>
-                </div>
-              ))}
+                </span>
+                <button onClick={() => setSelectedPlaceId(place.id)}>
+                  Select
+                </button>
+                <button onClick={() => removePlace(index)}>Remove</button>
+              </div>
+            ))}
+          </div>
+          <div>
+            <Weather place={selectedPlace} />
           </div>
         </div>
       </SingleColumnLayout>
     </>
   )
-}
-
-const suggestionToPlace = async (suggestion: Suggestion): Promise<Place> => {
-  const geocoding = await getGeocode({ placeId: suggestion.place_id })
-  const latLon = await getLatLng(geocoding[0])
-
-  const addressComponents = geocoding[0].address_components
-  const city = addressComponents.find((component) =>
-    component.types.includes('locality')
-  )
-  const state = addressComponents.find((component) =>
-    component.types.includes('administrative_area_level_1')
-  )
-
-  return {
-    id: suggestion.place_id,
-    lat: latLon.lat,
-    lon: latLon.lng,
-    name: `${city!.long_name}, ${state!.short_name}`,
-  }
 }
 
 export default Home
