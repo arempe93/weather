@@ -1,1 +1,1 @@
-export { default } from '@/routes/Dashboard'
+export { default } from '@/routes/Home'
