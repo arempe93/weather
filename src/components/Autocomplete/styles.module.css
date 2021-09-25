@@ -1,0 +1,56 @@
+.combobox {
+  --focus-ring-color: theme('colors.theme.light');
+  --focus-ring-offset: 1px;
+
+  @apply focus-ring-base;
+
+  /* &.is-focused {
+    @apply focus-ring-active;
+  } */
+}
+
+.menu {
+  display: none;
+  list-style: none;
+  padding: 4px 0;
+
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  right: 0;
+
+  background-color: white;
+  border-radius: theme('borderRadius.lg');
+  box-shadow: theme('boxShadow.lg');
+
+  &.is-open {
+    display: block;
+  }
+}
+
+.item {
+  --bg-color: white;
+
+  padding: 4px 16px;
+  width: 100%;
+
+  background-color: var(--bg-color);
+  cursor: pointer;
+  outline: none;
+
+  line-height: 1.5;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &.is-highlighted {
+    --bg-color: theme('colors.theme.alpha.12');
+  }
+
+  &.is-selected {
+    --bg-color: theme('colors.theme.alpha.24');
+  }
+
+  &.is-highlighted.is-selected {
+    --bg-color: theme('colors.theme.alpha.32');
+  }
+}

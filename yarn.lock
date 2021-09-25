@@ -1553,6 +1553,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.14.8":
+  version: 7.15.4
+  resolution: "@babel/runtime@npm:7.15.4"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: c40825430400e47c19b97e4142d5315d2910305b9714d44a711472587ee2fd4521fdba5f02ddd9df3902f5e988d9854fa83f4da1e0c091f70f6983fa52480606
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.12.7, @babel/template@npm:^7.14.5":
   version: 7.14.5
   resolution: "@babel/template@npm:7.14.5"
@@ -7495,6 +7504,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"downshift@npm:^6.1.7":
+  version: 6.1.7
+  resolution: "downshift@npm:6.1.7"
+  dependencies:
+    "@babel/runtime": ^7.14.8
+    compute-scroll-into-view: ^1.0.17
+    prop-types: ^15.7.2
+    react-is: ^17.0.2
+    tslib: ^2.3.0
+  peerDependencies:
+    react: ">=16.12.0"
+  checksum: 0904ed8f285d31ee00e471dcddd57e72468bee354b191167bcaebe690ec292647fe4c31f483665094d750e72dd71e5d7db695acef33ab5dba6a39fed0112bab6
+  languageName: node
+  linkType: hard
+
 "duplexer@npm:^0.1.1":
   version: 0.1.2
   resolution: "duplexer@npm:0.1.2"
@@ -11716,6 +11740,7 @@ fsevents@^1.2.7:
     babel-plugin-module-resolver: ^4.1.0
     classnames: ^2.3.1
     date-fns: ^2.23.0
+    downshift: ^6.1.7
     eslint: 7.29.0
     eslint-config-next: 11.0.0
     js-cookie: ^3.0.0
@@ -15592,6 +15617,13 @@ resolve@^2.0.0-next.3:
   version: 2.3.0
   resolution: "tslib@npm:2.3.0"
   checksum: 8869694c26e4a7b56d449662fd54a4f9ba872c889d991202c74462bd99f10e61d5bd63199566c4284c0f742277736292a969642cc7b590f98727a7cae9529122
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^2.3.0":
+  version: 2.3.1
+  resolution: "tslib@npm:2.3.1"
+  checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
   languageName: node
   linkType: hard
 
