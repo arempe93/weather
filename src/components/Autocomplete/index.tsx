@@ -114,7 +114,9 @@ const Autocomplete = <T extends object>({
       </div>
       <ul
         {...getMenuProps()}
-        className={cx(styles.menu, { [styles['is-open']]: isOpen })}
+        className={cx(styles.menu, {
+          [styles['is-open']]: items.length > 0 && isOpen,
+        })}
       >
         {items.map((item, index) => (
           <li key={itemToKey(item)} {...getItemProps({ item, index })}>

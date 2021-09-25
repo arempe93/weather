@@ -36,7 +36,8 @@
     "react-dom": "17.0.2",
     "react-hook-form": "^7.12.1",
     "react-is": "^17.0.2",
-    "react-modal-hook": "^3.0.0"
+    "react-modal-hook": "^3.0.0",
+    "use-places-autocomplete": "^1.9.4"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.3.7",
@@ -45,6 +46,7 @@
     "@storybook/builder-webpack5": "^6.3.7",
     "@storybook/manager-webpack5": "^6.3.7",
     "@storybook/react": "^6.3.7",
+    "@types/googlemaps": "^3.43.3",
     "@types/js-cookie": "^2.2.7",
     "@types/node": "^15.12.4",
     "@types/node-fetch": "^3.0.3",

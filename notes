@@ -1,6 +1,8 @@
 http://snowfence.umn.edu/Components/winddirectionanddegrees.htm
 https://openweathermap.org/weather-conditions
 
+https://console.cloud.google.com/google/maps-apis/credentials
+
 export type CurrentWeatherResult = {
   /** Location data */
   coords: {
