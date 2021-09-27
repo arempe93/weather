@@ -7,7 +7,12 @@ export type Props = {
 }
 
 const PlaceWeather = ({ place }: Props) => {
-  return <WeatherDisplay lat={place.lat} lon={place.lon} name={place.name} />
+  return (
+    <WeatherDisplay
+      coords={{ lat: place.lat, lon: place.lon }}
+      name={place.name}
+    />
+  )
 }
 
 export default PlaceWeather

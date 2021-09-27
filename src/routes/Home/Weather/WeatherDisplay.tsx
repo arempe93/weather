@@ -3,15 +3,21 @@ import qs from 'query-string'
 import useSWR from 'swr'
 
 export type Props = {
-  lat: number
-  lon: number
+  coords?: {
+    lat: number
+    lon: number
+  }
   name?: string
 }
 
-const WeatherDisplay = ({ lat, lon, name }: Props) => {
-  const { data, error } = useSWR([lat, lon], currentWeatherFetcher, {
-    dedupingInterval: 10 * 60 * 1000,
-  })
+const WeatherDisplay = ({ coords, name }: Props) => {
+  const { data, error } = useSWR(
+    coords ? [coords.lat, coords.lon] : null,
+    currentWeatherFetcher,
+    {
+      dedupingInterval: 10 * 60 * 1000,
+    }
+  )
 
   if (error) {
     throw new Error(error)

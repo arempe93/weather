@@ -1,30 +1,22 @@
 import useGeolocation from '@/hooks/useGeolocation'
+
 import WeatherDisplay from './WeatherDisplay'
 
 const LocationWeather = () => {
-  const { error, isLoading, position } = useGeolocation()
+  const { error, position } = useGeolocation()
 
   if (error) {
-    console.log(error)
-  }
-  if (position) {
-    console.log(position)
+    return <>{error.message}</>
   }
 
   return (
-    <div>
-      {position && (
-        <WeatherDisplay
-          lat={position.coords.latitude}
-          lon={position.coords.longitude}
-        />
-      )}
-      {error && (
-        <div>
-          <pre>Error: {error.message}</pre>
-        </div>
-      )}
-    </div>
+    <WeatherDisplay
+      coords={
+        position
+          ? { lat: position.coords.latitude, lon: position.coords.longitude }
+          : undefined
+      }
+    />
   )
 }
 
