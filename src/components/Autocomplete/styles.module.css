@@ -1,21 +1,15 @@
 .combobox {
   --focus-ring-color: theme('colors.theme.light');
   --focus-ring-offset: 1px;
-
-  @apply focus-ring-base;
-
-  /* &.is-focused {
-    @apply focus-ring-active;
-  } */
 }
 
 .menu {
   display: none;
   list-style: none;
-  padding: 4px 0;
+  padding: 8px 0;
 
   position: absolute;
-  top: calc(100% + 2px);
+  top: calc(100% + 4px);
   left: 0;
   right: 0;
 
@@ -35,7 +29,7 @@
 
   @apply truncate;
 
-  padding: 4px 16px;
+  padding: 8px 16px;
   width: 100%;
 
   background-color: var(--bg-color);

@@ -86,7 +86,7 @@ const Autocomplete = <T extends object>({
   const renderItem = providedRenderItem ?? defaultRenderItem
 
   return (
-    <div>
+    <div style={{ width: '100%' }}>
       <div
         {...getComboboxProps()}
         className={cx(styles.combobox, {

@@ -1,16 +1,27 @@
 .main {
+  --pill-height: 32px;
+
   align-items: center;
   display: flex;
   gap: 8px;
-  height: 28px;
+  height: var(--pill-height);
   padding: 0 0 0 4px;
 
-  background-color: lightgray;
+  background-color: rgba(255, 255, 255, 0.12);
   border-radius: 9999px;
+  color: white;
   cursor: pointer;
 
-  &:hover {
-    background-color: gray;
+  white-space: nowrap;
+
+  &:hover, &:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  &:focus {
+    @apply ring-2 ring-[white];
+
+    outline: none;
   }
 
   &.uncloseable {
@@ -19,12 +30,19 @@
 }
 
 .close {
-  height: 28px;
-  width: 28px;
+  height: var(--pill-height);
+  width: var(--pill-height);
 
   border-radius: 9999px;
 
-  &:hover {
-    background-color: rgba(0,0,0,0.1);
+  &:hover, &:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+
+  &:focus {
+    @apply ring-2 ring-[white];
+
+    outline: none;
   }
 }

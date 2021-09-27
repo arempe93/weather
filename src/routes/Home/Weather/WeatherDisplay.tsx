@@ -25,8 +25,12 @@ const WeatherDisplay = ({ coords, name }: Props) => {
 
   return (
     <div>
-      <h1>Weather for {name ? name : 'location'}</h1>
-      {data && <div>{formatTemperature(data.main.temp, 'C')}</div>}
+      <h1 className="text-[white]">{name ? name : 'My location'}</h1>
+      {data && (
+        <h2 className="text-[white]">
+          {formatTemperature(data.main.temp, 'C')}
+        </h2>
+      )}
     </div>
   )
 }

@@ -1,21 +1,22 @@
 .main {
-  padding: 6px 12px;
+  padding: 8px 12px;
   width: 100%;
 
-  background-color: white;
-  border: 1px solid theme('colors.neutral.light');
-  border-radius: theme('borderRadius.DEFAULT');
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid transparent;
+  border-radius: theme('borderRadius.lg');
   box-shadow: 0 0 0 -2px white, 0 0 0 0 theme('colors.theme.light');
+  color: white;
 
   font-family: theme('fontFamily.sans');
-  font-size: theme('fontSize.sm');
+  font-size: theme('fontSize.base');
 
   transition: box-shadow 300ms ease;
 
   &:focus {
     outline: none;
 
-    @apply ring-2 ring-offset-1 ring-theme-light;
+    @apply ring-2 ring-[white];
   }
 
   &[aria-invalid="true"] {
@@ -25,6 +26,6 @@
   }
 
   &::placeholder {
-    color: theme('textColor.lightest');
+    color: rgba(255, 255, 255, 0.5);
   }
 }

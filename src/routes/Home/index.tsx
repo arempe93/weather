@@ -62,9 +62,9 @@ const Home = () => {
         <title>Palmetto Weather</title>
       </Head>
       <SingleColumnLayout>
-        <div className="py-8 laptop:py-24">
-          <Stack vertical gap={32}>
-            <div>
+        <div className="py-8 laptop:py-12">
+          <Stack vertical gap={64}>
+            <Stack vertical gap={24}>
               <GooglePlacesAutocomplete
                 autoFocus
                 id="place-select"
@@ -72,39 +72,26 @@ const Home = () => {
                 selectedItem={null}
                 onSelect={(suggestion) => suggestion && addPlace(suggestion)}
               />
-            </div>
-            <Stack>
-              {/* <div>
-              <span>My location</span>
-              <button onClick={() => setSelectedPlaceId(null)}>Select</button>
-            </div> */}
-              <PlacePill
-                icon={faLocationArrow}
-                name="My location"
-                onSelect={() => setSelectedPlaceId(null)}
-              />
-              {places.map((place, index) => (
-                // <div key={place.id}>
-                //   <span>
-                //     {place.name} ({place.lat}, {place.lon})
-                //   </span>
-                //   <button onClick={() => setSelectedPlaceId(place.id)}>
-                //     Select
-                //   </button>
-                //   <button onClick={() => removePlace(index)}>Remove</button>
-                // </div>
-                <PlacePill
-                  key={place.id}
-                  icon={faMapMarkerAlt}
-                  name={place.name}
-                  onRemove={() => removePlace(index)}
-                  onSelect={() => setSelectedPlaceId(place.id)}
-                />
-              ))}
+              <div className="overflow-x-auto max-w-full p-1 m-[-4px]">
+                <div className="flex gap-2 laptop:flex-wrap">
+                  <PlacePill
+                    icon={faLocationArrow}
+                    name="My location"
+                    onSelect={() => setSelectedPlaceId(null)}
+                  />
+                  {places.map((place, index) => (
+                    <PlacePill
+                      key={place.id}
+                      icon={faMapMarkerAlt}
+                      name={place.name}
+                      onRemove={() => removePlace(index)}
+                      onSelect={() => setSelectedPlaceId(place.id)}
+                    />
+                  ))}
+                </div>
+              </div>
             </Stack>
-            <div>
-              <Weather place={selectedPlace} />
-            </div>
+            <Weather place={selectedPlace} />
           </Stack>
         </div>
       </SingleColumnLayout>

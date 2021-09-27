@@ -11,7 +11,10 @@
   body {
     @apply font-sans text-base leading-normal text-default;
 
-    background-color: #f4f5f7;
+    /* background-color: #0abcf9;
+    background-image: linear-gradient(315deg, #0abcf9 0%, #2c69d1 74%); */
+    background-color: #29539b;
+    background-image: linear-gradient(315deg, #29539b 0%, #1e3b70 74%);
   }
 
   html, body, #__next {

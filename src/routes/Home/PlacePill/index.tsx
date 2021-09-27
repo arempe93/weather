@@ -18,6 +18,8 @@ const PlacePill = ({ icon, name, onRemove, onSelect }: Props) => {
       className={cx(styles.main, {
         [styles.uncloseable]: typeof onRemove === 'undefined',
       })}
+      role="button"
+      tabIndex={0}
       onClick={onSelect}
     >
       <FontAwesomeIcon fixedWidth icon={icon} />
