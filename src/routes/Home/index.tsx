@@ -1,3 +1,7 @@
+import {
+  faLocationArrow,
+  faMapMarkerAlt,
+} from '@fortawesome/free-solid-svg-icons'
 import Head from 'next/head'
 import { useCallback, useMemo, useState } from 'react'
 
@@ -7,7 +11,9 @@ import GooglePlacesAutocomplete, {
   Suggestion,
 } from '@/components/GooglePlacesAutocomplete'
 import SingleColumnLayout from '@/components/SingleColumnLayout'
+import Stack from '@/components/Stack'
 
+import PlacePill from './PlacePill'
 import Weather from './Weather'
 
 import { removeAtIndex } from '@/util/array'
@@ -57,33 +63,49 @@ const Home = () => {
       </Head>
       <SingleColumnLayout>
         <div className="py-8 laptop:py-24">
-          <GooglePlacesAutocomplete
-            autoFocus
-            id="place-select"
-            placeholder="Find your weather..."
-            selectedItem={null}
-            onSelect={(suggestion) => suggestion && addPlace(suggestion)}
-          />
-          <div>
+          <Stack vertical gap={32}>
             <div>
+              <GooglePlacesAutocomplete
+                autoFocus
+                id="place-select"
+                placeholder="Find your weather..."
+                selectedItem={null}
+                onSelect={(suggestion) => suggestion && addPlace(suggestion)}
+              />
+            </div>
+            <Stack>
+              {/* <div>
               <span>My location</span>
               <button onClick={() => setSelectedPlaceId(null)}>Select</button>
+            </div> */}
+              <PlacePill
+                icon={faLocationArrow}
+                name="My location"
+                onSelect={() => setSelectedPlaceId(null)}
+              />
+              {places.map((place, index) => (
+                // <div key={place.id}>
+                //   <span>
+                //     {place.name} ({place.lat}, {place.lon})
+                //   </span>
+                //   <button onClick={() => setSelectedPlaceId(place.id)}>
+                //     Select
+                //   </button>
+                //   <button onClick={() => removePlace(index)}>Remove</button>
+                // </div>
+                <PlacePill
+                  key={place.id}
+                  icon={faMapMarkerAlt}
+                  name={place.name}
+                  onRemove={() => removePlace(index)}
+                  onSelect={() => setSelectedPlaceId(place.id)}
+                />
+              ))}
+            </Stack>
+            <div>
+              <Weather place={selectedPlace} />
             </div>
-            {places.map((place, index) => (
-              <div key={place.id}>
-                <span>
-                  {place.name} ({place.lat}, {place.lon})
-                </span>
-                <button onClick={() => setSelectedPlaceId(place.id)}>
-                  Select
-                </button>
-                <button onClick={() => removePlace(index)}>Remove</button>
-              </div>
-            ))}
-          </div>
-          <div>
-            <Weather place={selectedPlace} />
-          </div>
+          </Stack>
         </div>
       </SingleColumnLayout>
     </>

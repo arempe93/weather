@@ -1,3 +1,4 @@
+import { formatTemperature } from '@/util/weather'
 import qs from 'query-string'
 import useSWR from 'swr'
 
@@ -8,7 +9,9 @@ export type Props = {
 }
 
 const WeatherDisplay = ({ lat, lon, name }: Props) => {
-  const { data, error } = useSWR([lat, lon], currentWeatherFetcher)
+  const { data, error } = useSWR([lat, lon], currentWeatherFetcher, {
+    dedupingInterval: 10 * 60 * 1000,
+  })
 
   if (error) {
     throw new Error(error)
@@ -17,11 +20,7 @@ const WeatherDisplay = ({ lat, lon, name }: Props) => {
   return (
     <div>
       <h1>Weather for {name ? name : 'location'}</h1>
-      {data && (
-        <div>
-          <pre>{JSON.stringify(data)}</pre>
-        </div>
-      )}
+      {data && <div>{formatTemperature(data.main.temp, 'C')}</div>}
     </div>
   )
 }

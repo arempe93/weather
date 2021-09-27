@@ -1,0 +1,30 @@
+.main {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  height: 28px;
+  padding: 0 0 0 4px;
+
+  background-color: lightgray;
+  border-radius: 9999px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: gray;
+  }
+
+  &.uncloseable {
+    padding-right: 12px;
+  }
+}
+
+.close {
+  height: 28px;
+  width: 28px;
+
+  border-radius: 9999px;
+
+  &:hover {
+    background-color: rgba(0,0,0,0.1);
+  }
+}
