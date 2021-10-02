@@ -63,7 +63,7 @@ const Home = () => {
       </Head>
       <SingleColumnLayout>
         <div className="py-8 laptop:py-12">
-          <Stack vertical gap={64}>
+          <Stack vertical gap={32}>
             <Stack vertical gap={24}>
               <GooglePlacesAutocomplete
                 autoFocus

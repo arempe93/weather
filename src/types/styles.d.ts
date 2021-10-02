@@ -2,10 +2,10 @@ import { CSSProperties } from 'react'
 
 export type StyleProps = {
   className?: string
-  styles?: CSSProperties
+  style?: CSSProperties
 }
 
 export interface IStyleProps {
   className?: string
-  styles?: CSSProperties
+  style?: CSSProperties
 }
