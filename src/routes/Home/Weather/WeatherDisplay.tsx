@@ -85,7 +85,7 @@ const WeatherDisplay = ({ coords, name }: Props) => {
                   className="text-base"
                   high={data.daily[0].temp.max}
                   low={data.daily[0].temp.min}
-                  unit="F"
+                  unit={temperatureUnit}
                 />
               </Stack>
             </Stack>
@@ -268,7 +268,7 @@ const WeatherDisplay = ({ coords, name }: Props) => {
                       <TemperatureRange
                         high={daily.temp.max}
                         low={daily.temp.min}
-                        unit="F"
+                        unit={temperatureUnit}
                       />
                     </Stack>
                   ))}

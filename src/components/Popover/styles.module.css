@@ -1,0 +1,7 @@
+.content {
+  padding: 8px;
+
+  background-color: white;
+  border-radius: theme('borderRadius.lg');
+  box-shadow: theme('boxShadow.sm'), theme('boxShadow.xl');
+}

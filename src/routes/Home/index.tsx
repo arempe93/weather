@@ -14,6 +14,7 @@ import SingleColumnLayout from '@/components/SingleColumnLayout'
 import Stack from '@/components/Stack'
 
 import PlacePill from './PlacePill'
+import Settings from './Settings'
 import Weather from './Weather'
 
 import { removeAtIndex } from '@/util/array'
@@ -65,13 +66,16 @@ const Home = () => {
         <div className="py-8 laptop:py-12">
           <Stack vertical gap={32}>
             <Stack vertical gap={24}>
-              <GooglePlacesAutocomplete
-                autoFocus
-                id="place-select"
-                placeholder="Find your weather..."
-                selectedItem={null}
-                onSelect={(suggestion) => suggestion && addPlace(suggestion)}
-              />
+              <Stack gap={24}>
+                <GooglePlacesAutocomplete
+                  autoFocus
+                  id="place-select"
+                  placeholder="Find your weather..."
+                  selectedItem={null}
+                  onSelect={(suggestion) => suggestion && addPlace(suggestion)}
+                />
+                <Settings />
+              </Stack>
               <div className="overflow-x-auto max-w-full p-1 m-[-4px]">
                 <div className="flex gap-2 laptop:flex-wrap">
                   <PlacePill
