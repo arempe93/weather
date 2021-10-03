@@ -1,10 +1,12 @@
 const kelvinToC = (kelvin: number) => kelvin - 273.15
 const kelvinToF = (kelvin: number) => (kelvinToC(kelvin) * 9) / 5 + 32
 
-export const convertTemperature = (kelvin: number, unit: 'C' | 'F') =>
+export type TemperatureUnit = 'C' | 'F'
+
+export const convertTemperature = (kelvin: number, unit: TemperatureUnit) =>
   unit === 'C' ? kelvinToC(kelvin) : kelvinToF(kelvin)
 
-export const formatTemperature = (kelvin: number, unit: 'C' | 'F') =>
+export const formatTemperature = (kelvin: number, unit: TemperatureUnit) =>
   `${Math.round(convertTemperature(kelvin, unit))}°`
 
 export enum WeatherCode {
