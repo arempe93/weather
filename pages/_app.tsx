@@ -6,6 +6,8 @@ import { IdProvider } from '@radix-ui/react-id'
 import type { AppProps as BaseAppProps } from 'next/app'
 import { ModalProvider } from 'react-modal-hook'
 
+import DisplaySettingsProvider from '@/app/DisplaySettingsProvider'
+
 fontAwesomeConfig.autoAddCss = false
 
 type AppProps = Omit<BaseAppProps, 'Component'> & {
@@ -23,7 +25,9 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <IdProvider>
-      <ModalProvider>{pageMarkup}</ModalProvider>
+      <DisplaySettingsProvider>
+        <ModalProvider>{pageMarkup}</ModalProvider>
+      </DisplaySettingsProvider>
     </IdProvider>
   )
 }

@@ -17,3 +17,32 @@ export const parseAndFormat = (dateString: string, formatString: string) =>
 
 export const unixToZonedTime = (unix: number, tz: string) =>
   utcToZonedTime(fromUnixTime(unix), tz)
+
+export type TimeUnit = '12H' | '24H'
+export enum FormatKind {
+  Time,
+  Hour,
+  Weekday,
+}
+
+export const getFormatString = (formatKind: FormatKind, unit: TimeUnit) => {
+  switch (formatKind) {
+    case FormatKind.Time:
+      return unit === '12H' ? TIME_FORMAT_12H : TIME_FORMAT_24H
+    case FormatKind.Hour:
+      return unit === '12H' ? HOUR_FORMAT_12H : HOUR_FORMAT_24H
+    case FormatKind.Weekday:
+      return WEEKDAY_FORMAT
+  }
+}
+
+type FormatUnixOptions = {
+  formatKind: FormatKind
+  tz: string
+  unit: TimeUnit
+}
+
+export const formatUnix = (
+  unix: number,
+  { formatKind, tz, unit }: FormatUnixOptions
+) => format(unixToZonedTime(unix, tz), getFormatString(formatKind, unit))

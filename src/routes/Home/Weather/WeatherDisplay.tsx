@@ -1,37 +1,29 @@
-import { format } from 'date-fns'
-import { utcToZonedTime } from 'date-fns-tz'
+import {
+  faLocationArrow,
+  faMapMarkerAlt,
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import qs from 'query-string'
 import useSWR from 'swr'
 
+import { useDisplaySettings } from '@/app/DisplaySettingsProvider'
+
+import ScrollArea from '@/app/ScrollArea'
+import TemperatureRange from '@/app/TemperatureRange'
+import WeatherIcon from '@/app/WeatherIcon'
+
 import Stack from '@/components/Stack'
 
+import { FormatKind, formatUnix } from '@/util/date'
 import {
   formatDisance,
   formatSpeed,
   formatTemperature,
   openweatherIdToCode,
-  WeatherCode,
   weatherCodeToDescription,
-  weatherCodeToIcon,
 } from '@/util/weather'
 
 import data from './tempdata'
-import WeatherIcon from '@/app/WeatherIcon'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faLocationArrow,
-  faMapMarkerAlt,
-  faThermometerThreeQuarters,
-} from '@fortawesome/free-solid-svg-icons'
-import {
-  HOUR_FORMAT_12H,
-  HOUR_FORMAT_24H,
-  unixToZonedTime,
-  WEEKDAY_FORMAT,
-} from '@/util/date'
-import ScrollArea from '@/app/ScrollArea'
-import TemperatureRange from '@/app/TemperatureRange'
-import { faEye } from '@fortawesome/free-regular-svg-icons'
 
 export type Props = {
   coords?: {
@@ -49,6 +41,8 @@ const WeatherDisplay = ({ coords, name }: Props) => {
   //     dedupingInterval: 10 * 60 * 1000,
   //   }
   // )
+
+  const { distanceUnit, temperatureUnit, timeUnit } = useDisplaySettings()
 
   // if (error) {
   //   throw new Error(error)
@@ -68,7 +62,7 @@ const WeatherDisplay = ({ coords, name }: Props) => {
         </h1>
       </Stack>
       {data && (
-        <div className="grid gap-6 grid-cols-1 grid-rows-2 laptop:grid-cols-2 laptop:grid-rows-none">
+        <div className="grid gap-6 grid-cols-1 grid-rows-none laptop:grid-cols-2 laptop:gap-12">
           <Stack vertical className="laptop:flex-1" gap={48}>
             <Stack vertical>
               <Stack>
@@ -85,7 +79,7 @@ const WeatherDisplay = ({ coords, name }: Props) => {
               </Stack>
               <Stack align="end" gap={16}>
                 <h2 className="text-[white] text-9xl font-thin">
-                  {formatTemperature(data.current.temp, 'F')}
+                  {formatTemperature(data.current.temp, temperatureUnit)}
                 </h2>
                 <TemperatureRange
                   className="text-base"
@@ -107,10 +101,11 @@ const WeatherDisplay = ({ coords, name }: Props) => {
                     gap={16}
                   >
                     <p className="text-[white] font-light">
-                      {format(
-                        unixToZonedTime(hour.dt, data.timezone),
-                        HOUR_FORMAT_12H
-                      )}
+                      {formatUnix(hour.dt, {
+                        formatKind: FormatKind.Hour,
+                        tz: data.timezone,
+                        unit: timeUnit,
+                      })}
                     </p>
                     <WeatherIcon
                       className="w-8 h-8"
@@ -122,7 +117,7 @@ const WeatherDisplay = ({ coords, name }: Props) => {
                       code={openweatherIdToCode(hour.weather[0].id)}
                     />
                     <p className="text-[white] font-light">
-                      {formatTemperature(hour.temp, 'F')}
+                      {formatTemperature(hour.temp, temperatureUnit)}
                     </p>
                   </Stack>
                 ))}
@@ -160,7 +155,10 @@ const WeatherDisplay = ({ coords, name }: Props) => {
                   <Stack vertical align="center" gap={4}>
                     <small className="text-white-alpha-88">Feels like</small>
                     <p className="text-[white] text-base">
-                      {formatTemperature(data.current.feels_like, 'F')}
+                      {formatTemperature(
+                        data.current.feels_like,
+                        temperatureUnit
+                      )}
                     </p>
                   </Stack>
                 </Stack>
@@ -186,7 +184,10 @@ const WeatherDisplay = ({ coords, name }: Props) => {
                   <Stack vertical align="center" gap={4}>
                     <small className="text-white-alpha-88">Dew point</small>
                     <p className="text-[white] text-base">
-                      {formatTemperature(data.current.dew_point, 'F')}
+                      {formatTemperature(
+                        data.current.dew_point,
+                        temperatureUnit
+                      )}
                     </p>
                   </Stack>
                 </Stack>
@@ -199,7 +200,7 @@ const WeatherDisplay = ({ coords, name }: Props) => {
                   <Stack vertical align="center" gap={4}>
                     <small className="text-white-alpha-88">Wind</small>
                     <p className="text-[white] text-base">
-                      {formatSpeed(data.current.wind_speed, 'MI')}
+                      {formatSpeed(data.current.wind_speed, distanceUnit)}
                     </p>
                   </Stack>
                 </Stack>
@@ -212,7 +213,7 @@ const WeatherDisplay = ({ coords, name }: Props) => {
                   <Stack vertical align="center" gap={4}>
                     <small className="text-white-alpha-88">Visibility</small>
                     <p className="text-[white] text-base">
-                      {formatDisance(data.current.visibility, 'MI')}
+                      {formatDisance(data.current.visibility, distanceUnit)}
                     </p>
                   </Stack>
                 </Stack>
@@ -253,10 +254,11 @@ const WeatherDisplay = ({ coords, name }: Props) => {
                       gap={16}
                     >
                       <p className="text-[white] font-light">
-                        {format(
-                          unixToZonedTime(daily.dt, data.timezone),
-                          WEEKDAY_FORMAT
-                        )}
+                        {formatUnix(daily.dt, {
+                          formatKind: FormatKind.Weekday,
+                          tz: data.timezone,
+                          unit: timeUnit,
+                        })}
                       </p>
                       <WeatherIcon
                         className="w-8 h-8"

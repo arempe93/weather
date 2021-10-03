@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 
-type Setter<V> = (prevValue: V | null) => V | null
-type ValueOrSetter<V> = V extends Function ? never : V | null | Setter<V>
+export type Setter<V> = (prevValue: V | null) => V | null
+export type ValueOrSetter<V> = V extends Function ? never : V | null | Setter<V>
 
 const useLocalStorage = <V = any>(
   key: string,
