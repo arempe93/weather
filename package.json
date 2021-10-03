@@ -63,5 +63,8 @@
     "tailwindcss": "^2.2.2",
     "tsconfig-paths-webpack-plugin": "^3.5.1",
     "typescript": "^4.4.1"
+  },
+  "resolutions": {
+    "use-places-autocomplete@1.9.4": "patch:use-places-autocomplete@npm:1.9.4#.yarn/patches/use-places-autocomplete-npm-1.9.4-73f8674044"
   }
 }
