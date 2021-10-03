@@ -93,3 +93,27 @@ export const weatherCodeToDescription = (code: WeatherCode) => {
       return 'Cloudy'
   }
 }
+
+export type DistanceUnit = 'MI' | 'KM'
+
+const metersPerSecondToMph = (mps: number) => mps * 2.237
+
+const metersPerSecondToKmh = (mps: number) => mps * 3.6
+
+export const convertSpeed = (mps: number, unit: DistanceUnit) =>
+  unit === 'MI' ? metersPerSecondToMph(mps) : metersPerSecondToKmh(mps)
+
+export const formatSpeed = (mps: number, unit: DistanceUnit) =>
+  `${Math.round(convertSpeed(mps, unit))} ${unit === 'MI' ? 'mph' : 'km/h'}`
+
+export const metersToMiles = (meters: number) => meters / 1609
+
+export const metersToKilometers = (meters: number) => meters / 1000
+
+export const convertDistance = (meters: number, unit: DistanceUnit) =>
+  unit === 'MI' ? metersToMiles(meters) : metersToKilometers(meters)
+
+export const formatDisance = (meters: number, unit: DistanceUnit) =>
+  `${convertDistance(meters, unit).toLocaleString(undefined, {
+    maximumFractionDigits: 1,
+  })} ${unit === 'MI' ? 'mi' : 'km'}`

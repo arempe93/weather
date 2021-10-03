@@ -6,6 +6,8 @@ import useSWR from 'swr'
 import Stack from '@/components/Stack'
 
 import {
+  formatDisance,
+  formatSpeed,
   formatTemperature,
   openweatherIdToCode,
   WeatherCode,
@@ -16,7 +18,11 @@ import {
 import data from './tempdata'
 import WeatherIcon from '@/app/WeatherIcon'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationArrow } from '@fortawesome/free-solid-svg-icons'
+import {
+  faLocationArrow,
+  faMapMarkerAlt,
+  faThermometerThreeQuarters,
+} from '@fortawesome/free-solid-svg-icons'
 import {
   HOUR_FORMAT_12H,
   HOUR_FORMAT_24H,
@@ -25,6 +31,7 @@ import {
 } from '@/util/date'
 import ScrollArea from '@/app/ScrollArea'
 import TemperatureRange from '@/app/TemperatureRange'
+import { faEye } from '@fortawesome/free-regular-svg-icons'
 
 export type Props = {
   coords?: {
@@ -48,16 +55,15 @@ const WeatherDisplay = ({ coords, name }: Props) => {
   // }
 
   return (
-    <Stack vertical gap={64}>
+    <Stack vertical gap={32}>
       <Stack align="center" justify="center" horizontalGap={16}>
-        {!name && (
-          <FontAwesomeIcon
-            fixedWidth
-            className="text-[white] text-xl"
-            icon={faLocationArrow}
-          />
-        )}
-        <h1 className="text-[white] font-medium text-center laptop:text-5xl">
+        <FontAwesomeIcon
+          fixedWidth
+          className="text-[white] text-xl"
+          icon={!!name ? faMapMarkerAlt : faLocationArrow}
+        />
+
+        <h1 className="text-[white] font-medium text-center">
           {name ? name : 'My location'}
         </h1>
       </Stack>
@@ -124,14 +130,94 @@ const WeatherDisplay = ({ coords, name }: Props) => {
             </ScrollArea>
           </Stack>
           <Stack vertical className="laptop:flex-1">
-            <div className="w-full py-2">
+            <Stack vertical className="py-2" gap={12}>
               <Stack gap={16}>
                 <p className="text-[white] uppercase text-sm font-light tracking-wider">
                   Details
                 </p>
                 <div className="flex-1 h-[1px] bg-white-alpha-76 w-full" />
               </Stack>
-            </div>
+              <div className="grid grid-rows-2 grid-cols-3 w-full gap-4">
+                <Stack
+                  vertical
+                  align="center"
+                  className="p-2 rounded-lg bg-white-alpha-8"
+                >
+                  <img className="w-8 h-8" src="/rain.svg" />
+                  <Stack vertical align="center" gap={4}>
+                    <small className="text-white-alpha-88">Percipitation</small>
+                    <p className="text-[white] text-base">
+                      {Math.ceil(data.daily[0].pop * 100)}%
+                    </p>
+                  </Stack>
+                </Stack>
+                <Stack
+                  vertical
+                  align="center"
+                  className="p-2 rounded-lg bg-white-alpha-8"
+                >
+                  <img className="w-8 h-8" src="/thermostat.svg" />
+                  <Stack vertical align="center" gap={4}>
+                    <small className="text-white-alpha-88">Feels like</small>
+                    <p className="text-[white] text-base">
+                      {formatTemperature(data.current.feels_like, 'F')}
+                    </p>
+                  </Stack>
+                </Stack>
+                <Stack
+                  vertical
+                  align="center"
+                  className="p-2 rounded-lg bg-white-alpha-8"
+                >
+                  <img className="w-8 h-8" src="/humidity.svg" />
+                  <Stack vertical align="center" gap={4}>
+                    <small className="text-white-alpha-88">Humidity</small>
+                    <p className="text-[white] text-base">
+                      {Math.ceil(data.current.humidity)}%
+                    </p>
+                  </Stack>
+                </Stack>
+                <Stack
+                  vertical
+                  align="center"
+                  className="p-2 rounded-lg bg-white-alpha-8"
+                >
+                  <img className="w-8 h-8" src="/drop.svg" />
+                  <Stack vertical align="center" gap={4}>
+                    <small className="text-white-alpha-88">Dew point</small>
+                    <p className="text-[white] text-base">
+                      {formatTemperature(data.current.dew_point, 'F')}
+                    </p>
+                  </Stack>
+                </Stack>
+                <Stack
+                  vertical
+                  align="center"
+                  className="p-2 rounded-lg bg-white-alpha-8"
+                >
+                  <img className="w-8 h-8" src="/wind.svg" />
+                  <Stack vertical align="center" gap={4}>
+                    <small className="text-white-alpha-88">Wind</small>
+                    <p className="text-[white] text-base">
+                      {formatSpeed(data.current.wind_speed, 'MI')}
+                    </p>
+                  </Stack>
+                </Stack>
+                <Stack
+                  vertical
+                  align="center"
+                  className="p-2 rounded-lg bg-white-alpha-8"
+                >
+                  <img className="w-8 h-8" src="/visibility.svg" />
+                  <Stack vertical align="center" gap={4}>
+                    <small className="text-white-alpha-88">Visibility</small>
+                    <p className="text-[white] text-base">
+                      {formatDisance(data.current.visibility, 'MI')}
+                    </p>
+                  </Stack>
+                </Stack>
+              </div>
+            </Stack>
             {/* <div className="w-full py-2">
               <Stack gap={16}>
                 <p className="text-[white] uppercase text-sm font-light tracking-wider">
