@@ -6,6 +6,7 @@ import TextInputComponent, { Props } from '@/components/TextInput'
 
 export const TextInput: Story<Props> = (props) => (
   <div style={{ width: 'calc(100vw - 32px)', maxWidth: '24rem' }}>
+    {/* @ts-ignore */}
     <TextInputComponent {...props} />
   </div>
 )

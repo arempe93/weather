@@ -68,7 +68,9 @@ export type OneCallResponse = {
     wind_speed: number
     wind_deg: number
     wind_gust: number
-    pop: number
     weather: WeatherDescriptor[]
+    clouds: number
+    pop: number
+    uvi: number
   }[]
 }

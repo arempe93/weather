@@ -27,8 +27,7 @@ const Header = ({ actions, children, justify = 'apart', title }: Props) => {
               action={action}
               appearance="plain"
               listOptions={{
-                align: 'below',
-                justify: 'right',
+                align: 'end',
               }}
             />
           ))}

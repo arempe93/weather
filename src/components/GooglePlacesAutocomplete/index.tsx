@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Script from 'next/script'
 import usePlacesAutocomplete, { RequestOptions } from 'use-places-autocomplete'
 
 import Autocomplete, {
@@ -36,11 +36,10 @@ const GooglePlacesAutocomplete = ({
 
   return (
     <>
-      <Head>
-        <script
-          src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`}
-        ></script>
-      </Head>
+      <Script
+        src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`}
+        strategy="beforeInteractive"
+      />
       <Autocomplete
         {...props}
         disabled={props.disabled || !ready}

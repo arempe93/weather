@@ -38,14 +38,12 @@ const Section = ({ actions, children, flush, subdued, title }: Props) => {
           {actions && (
             <Stack justify="end">
               {actions.map((action, idx) => (
-                // <></>
                 <Action
                   key={idx}
                   action={action}
                   appearance="plain"
                   listOptions={{
-                    align: 'below',
-                    justify: 'right',
+                    align: 'end',
                   }}
                 />
               ))}

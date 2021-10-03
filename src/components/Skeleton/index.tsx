@@ -38,8 +38,10 @@ const Lines = ({ className, count, ...props }: LinesProps) => (
   </div>
 )
 
-export default {
+const Skeleton = {
   Action,
   Lines,
   Text,
 }
+
+export default Skeleton
