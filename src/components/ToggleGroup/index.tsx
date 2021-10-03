@@ -23,7 +23,11 @@ const ToggleGroup = <V extends string>({
       onValueChange={onChange}
     >
       {items.map((item) => (
-        <Primitive.Item className={styles.item} value={item.value}>
+        <Primitive.Item
+          key={item.value}
+          className={styles.item}
+          value={item.value}
+        >
           {item.label}
         </Primitive.Item>
       ))}
