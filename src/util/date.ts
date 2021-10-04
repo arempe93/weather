@@ -4,7 +4,7 @@ import { utcToZonedTime } from 'date-fns-tz'
 export const SHORT_DATE = 'PPP'
 export const FULL_DATETIME = 'PPPp'
 
-export const TIME_FORMAT_12H = 'p'
+export const TIME_FORMAT_12H = 'h:mmaaaaa'
 export const TIME_FORMAT_24H = 'HH:mm'
 
 export const HOUR_FORMAT_12H = 'haaaaa'

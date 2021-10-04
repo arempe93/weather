@@ -1,12 +1,12 @@
 @keyframes shimmer {
-  0% { opacity: 0.45 }
-  100% { opacity: 0.9 }
+  0% { opacity: 0.08 }
+  100% { opacity: 0.24 }
 }
 
 .shimmer {
   width: 100%;
 
-  background-color: theme('colors.neutral.lighter');
+  background-color: white;
   border-radius: theme('borderRadius.DEFAULT');
 
   animation: shimmer 800ms linear infinite alternate;

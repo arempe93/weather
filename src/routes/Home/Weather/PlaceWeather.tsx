@@ -1,4 +1,4 @@
-import WeatherDisplay from './WeatherDisplay'
+import Display from './Display'
 
 import { Place } from '../util'
 
@@ -8,10 +8,7 @@ export type Props = {
 
 const PlaceWeather = ({ place }: Props) => {
   return (
-    <WeatherDisplay
-      coords={{ lat: place.lat, lon: place.lon }}
-      name={place.name}
-    />
+    <Display coords={{ lat: place.lat, lon: place.lon }} name={place.name} />
   )
 }
 
