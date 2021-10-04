@@ -1,3 +1,5 @@
+import { OneCallResponse } from '@/types/openweather'
+
 const kelvinToC = (kelvin: number) => kelvin - 273.15
 const kelvinToF = (kelvin: number) => (kelvinToC(kelvin) * 9) / 5 + 32
 
@@ -117,3 +119,7 @@ export const formatDisance = (meters: number, unit: DistanceUnit) =>
   `${convertDistance(meters, unit).toLocaleString(undefined, {
     maximumFractionDigits: 1,
   })} ${unit === 'MI' ? 'mi' : 'km'}`
+
+export const isNight = (unix: number, data: OneCallResponse) =>
+  unix < data.daily[0].sunrise ||
+  (unix > data.daily[0].sunset && unix < data.daily[1].sunrise)

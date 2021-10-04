@@ -6,14 +6,15 @@ import WeatherIcon from '@/app/WeatherIcon'
 
 import Stack from '@/components/Stack'
 
+import { insertAtIndex } from '@/util/array'
 import { FormatKind, formatUnix, TimeUnit } from '@/util/date'
 import {
   formatTemperature,
+  isNight,
   openweatherIdToCode,
   TemperatureUnit,
   WeatherCode,
 } from '@/util/weather'
-import { insertAtIndex } from '@/util/array'
 
 type BaseHour = {
   description: string
@@ -41,9 +42,7 @@ const Hourly = ({ data, temperatureUnit, timeUnit }: Props) => {
     const weatherHours: Hour[] = data.hourly.slice(0, 24).map((hour) => ({
       code: openweatherIdToCode(hour.weather[0].id),
       description: formatTemperature(hour.temp, temperatureUnit),
-      isNight:
-        hour.dt < data.daily[0].sunrise ||
-        (hour.dt > data.daily[0].sunset && hour.dt < data.daily[1].sunrise),
+      isNight: isNight(hour.dt, data),
       type: 'weather',
       unix: hour.dt,
     }))

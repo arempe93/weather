@@ -12,8 +12,6 @@ import Stack from '@/components/Stack'
 import MainPanel from './MainPanel'
 import SidePanel from './SidePanel'
 
-import data from '../tempdata'
-
 export type Props = {
   coords?: {
     lat: number
@@ -23,25 +21,13 @@ export type Props = {
 }
 
 const Display = ({ coords, name }: Props) => {
-  // const { data, error } = useSWR(
-  //   coords ? [coords.lat, coords.lon] : null,
-  //   currentWeatherFetcher,
-  //   {
-  //     dedupingInterval: 10 * 60 * 1000,
-  //   }
-  // )
-
-  // if (error) {
-  //   return (
-  //     <div className="flex items-center gap-8 p-8 bg-danger-alpha-16 border border-danger rounded-lg text-[white] w-full">
-  //       <FontAwesomeIcon className="text-2xl" icon={faExclamationTriangle} />
-  //       <div>
-  //         <h3>Unable to get location</h3>
-  //         <small className="text-white-alpha-76">Reason: {error.message}</small>
-  //       </div>
-  //     </div>
-  //   )
-  // }
+  const { data, error } = useSWR(
+    coords ? [coords.lat, coords.lon] : null,
+    currentWeatherFetcher,
+    {
+      dedupingInterval: 10 * 60 * 1000,
+    }
+  )
 
   return (
     <Stack vertical gap={32}>
@@ -55,10 +41,19 @@ const Display = ({ coords, name }: Props) => {
           {name ? name : 'My location'}
         </h1>
       </Stack>
-      <div className="w-full grid gap-6 grid-cols-1 grid-rows-none laptop:grid-cols-2 laptop:gap-12">
-        <MainPanel data={data} />
-        <SidePanel data={data} />
-      </div>
+      {error ? (
+        <div className="flex items-center gap-8 p-8 bg-danger-alpha-16 border border-danger rounded-lg text-[white] w-full">
+          <FontAwesomeIcon className="text-2xl" icon={faExclamationTriangle} />
+          <div>
+            <h3>Unable to fetch weather</h3>
+          </div>
+        </div>
+      ) : (
+        <div className="w-full grid gap-6 grid-cols-1 grid-rows-none laptop:grid-cols-2 laptop:gap-12">
+          <MainPanel data={data} />
+          <SidePanel data={data} />
+        </div>
+      )}
     </Stack>
   )
 }

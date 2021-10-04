@@ -91,7 +91,7 @@ const SidePanel = ({ data }: Props) => {
             </Stack>
           </ScrollArea>
         ) : (
-          <LoadingArea />
+          <LoadingArea className="h-32" />
         )}
       </Section>
     </Stack>

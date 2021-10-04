@@ -9,9 +9,9 @@ import WeatherIcon from '@/app/WeatherIcon'
 import Skeleton from '@/components/Skeleton'
 import Stack from '@/components/Stack'
 
-import { FormatKind, formatUnix } from '@/util/date'
 import {
   formatTemperature,
+  isNight,
   openweatherIdToCode,
   weatherCodeToDescription,
 } from '@/util/weather'
@@ -32,7 +32,7 @@ const MainPanel = ({ data }: Props) => {
             <WeatherIcon
               className="w-12 h-12"
               code={openweatherIdToCode(data.current.weather[0].id)}
-              isNight={data.current.dt > data.current.sunset}
+              isNight={isNight(data.current.dt, data)}
             />
             <h3 className="text-[white] text-4xl font-thin">
               {weatherCodeToDescription(
@@ -68,7 +68,7 @@ const MainPanel = ({ data }: Props) => {
           />
         </ScrollArea>
       ) : (
-        <LoadingArea />
+        <LoadingArea className="h-32" />
       )}
     </Stack>
   )
