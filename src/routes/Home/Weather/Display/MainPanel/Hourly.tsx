@@ -11,6 +11,7 @@ import { FormatKind, formatUnix, TimeUnit } from '@/util/date'
 import {
   formatTemperature,
   isNight,
+  nextSunriseSunset,
   openweatherIdToCode,
   TemperatureUnit,
   WeatherCode,
@@ -47,10 +48,11 @@ const Hourly = ({ data, temperatureUnit, timeUnit }: Props) => {
       unix: hour.dt,
     }))
 
-    const { sunrise, sunset } = data.current
     let hours = Array.from(weatherHours)
     let didInsert = false
     let startTime = Date.now()
+
+    const { sunrise, sunset } = nextSunriseSunset(data)
 
     weatherHours.forEach((weatherHour, index) => {
       if (sunrise >= startTime && sunrise < weatherHour.unix) {
@@ -99,7 +101,6 @@ const Hourly = ({ data, temperatureUnit, timeUnit }: Props) => {
               src={hour.type === 'sunrise' ? '/sunrise.svg' : '/sunset.svg'}
             />
           )}
-
           <p className="text-[white] font-light">{hour.description}</p>
         </Stack>
       ))}

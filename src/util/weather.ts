@@ -123,3 +123,14 @@ export const formatDisance = (meters: number, unit: DistanceUnit) =>
 export const isNight = (unix: number, data: OneCallResponse) =>
   unix < data.daily[0].sunrise ||
   (unix > data.daily[0].sunset && unix < data.daily[1].sunrise)
+
+export const nextSunriseSunset = (data: OneCallResponse) => {
+  const { sunrise: todaySunrise, sunset: todaySunset } = data.daily[0]
+  const { sunrise: tmrwSunrise, sunset: tmrwSunset } = data.daily[1]
+  const now = Math.floor(Date.now() / 1000)
+
+  const sunrise = todaySunrise < now ? tmrwSunrise : todaySunrise
+  const sunset = todaySunset < now ? tmrwSunset : todaySunset
+
+  return { sunrise, sunset }
+}
