@@ -80,14 +80,7 @@ const Hourly = ({ data, temperatureUnit, timeUnit }: Props) => {
   return (
     <div className="grid gap-4 grid-flow-col">
       {hours.map((hour) => (
-        <Stack
-          key={hour.unix}
-          inline
-          vertical
-          align="center"
-          className="p-2"
-          gap={16}
-        >
+        <Stack key={hour.unix} inline vertical align="center" gap={16}>
           <p className="text-[white] font-light whitespace-nowrap">
             {formatUnix(hour.unix, {
               formatKind:

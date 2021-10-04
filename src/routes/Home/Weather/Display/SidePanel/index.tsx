@@ -58,38 +58,30 @@ const SidePanel = ({ data }: Props) => {
       <Section title='Chance of rain' /> */}
       <Section title="Next 7 days">
         {data ? (
-          <ScrollArea className="max-w-full">
-            <Stack>
-              {data.daily.slice(1).map((daily) => (
-                <Stack
-                  key={daily.dt}
-                  inline
-                  vertical
-                  align="center"
-                  className="p-2"
-                  gap={16}
-                >
-                  <p className="text-[white] font-light">
-                    {formatUnix(daily.dt, {
-                      formatKind: FormatKind.Weekday,
-                      tz: data.timezone,
-                      unit: timeUnit,
-                    })}
-                  </p>
+          <Stack justify="apart">
+            {data.daily.slice(1).map((daily) => (
+              <Stack key={daily.dt} inline vertical align="center" gap={16}>
+                <p className="text-[white] font-light">
+                  {formatUnix(daily.dt, {
+                    formatKind: FormatKind.Weekday,
+                    tz: data.timezone,
+                    unit: timeUnit,
+                  })}
+                </p>
+                <div className="w-8 h-8">
                   <WeatherIcon
-                    className="w-8 h-8"
                     isNight={false}
                     code={openweatherIdToCode(daily.weather[0].id)}
                   />
-                  <TemperatureRange
-                    high={daily.temp.max}
-                    low={daily.temp.min}
-                    unit={temperatureUnit}
-                  />
-                </Stack>
-              ))}
-            </Stack>
-          </ScrollArea>
+                </div>
+                <TemperatureRange
+                  high={daily.temp.max}
+                  low={daily.temp.min}
+                  unit={temperatureUnit}
+                />
+              </Stack>
+            ))}
+          </Stack>
         ) : (
           <LoadingArea className="h-32" />
         )}
