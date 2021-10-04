@@ -37,6 +37,7 @@ const GooglePlacesAutocomplete = ({
   return (
     <>
       <Script
+        id="google-places-autocomplete"
         src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`}
         strategy="beforeInteractive"
       />
