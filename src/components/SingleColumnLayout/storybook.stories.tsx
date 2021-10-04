@@ -1,6 +1,5 @@
 import { Story, Meta } from '@storybook/react'
 
-import Card from '@/components/Card'
 import SingleColumnLayoutComponent, {
   Props,
 } from '@/components/SingleColumnLayout'
@@ -10,9 +9,7 @@ import SingleColumnLayoutComponent, {
 export const SingleColumnLayout: Story<Props> = (props) => (
   <SingleColumnLayoutComponent {...props}>
     <div style={{ padding: '2rem 0' }}>
-      <Card sectioned title="Column content">
-        <p>The current column size is: {props.size}</p>
-      </Card>
+      <p>The current column size is: {props.size}</p>
     </div>
   </SingleColumnLayoutComponent>
 )

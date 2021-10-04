@@ -1,7 +1,6 @@
 import * as Primitive from '@radix-ui/react-popover'
 import { Story, Meta } from '@storybook/react'
 
-import Button from '@/components/Button'
 import PopoverComponent from '@/components/Popover'
 
 // import docs from './docs.mdx'
@@ -13,7 +12,7 @@ type Args = {
 export const Popover: Story<Args> = (props) => (
   <PopoverComponent>
     <PopoverComponent.Trigger>
-      <Button a11yLabel="Open popover" label="Open" />
+      <button>Open me</button>
     </PopoverComponent.Trigger>
     <PopoverComponent.Content align={props.align}>
       Menu content!
